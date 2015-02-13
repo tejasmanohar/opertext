@@ -1,11 +1,12 @@
-'use strict';
-
-console.log('\'Allo \'Allo! Content script');
-
 var text = '';
 function getText(e) {
     text = (document.all) ? document.selection.createRange().text : document.getSelection();
-    console.log(text);
+    text = text.anchorNode.nodeValue;
+
+    var resp = confirm('Wanna reverse ' + text + '?');
+    if (resp == true) {
+      alert(text.split('').reverse().join(''));
+    }
 }
 
 document.onmouseup = getText;
